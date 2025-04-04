@@ -30,9 +30,4 @@ Thumbs.db
 # Logs
 *.log
 
-# Config files
-.env
-application.properties
-application.yml
-application-*.yml
-application-*.properties
+
