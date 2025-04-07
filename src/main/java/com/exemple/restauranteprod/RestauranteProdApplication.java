@@ -1,14 +1,13 @@
 package com.exemple.restauranteprod;
 
-import com.exemple.restauranteprod.model.Order;
-import com.exemple.restauranteprod.service.OrderService;
+import java.util.Scanner;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Scanner;
-import java.util.UUID;
+import com.exemple.restauranteprod.service.OrderService;
 
 @SpringBootApplication
 public class RestauranteProdApplication implements CommandLineRunner {
@@ -28,41 +27,28 @@ public class RestauranteProdApplication implements CommandLineRunner {
         String nomeChef = scanner.nextLine();
 
         int option;
-
         do {
             System.out.println("\n== MENU CHEF ==");
-            System.out.println("1 - Enviar novo order");
+            System.out.println("1 - Enviar prato");
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
             option = scanner.nextInt();
             scanner.nextLine();
 
             if (option == 1) {
-                Order order = new Order();
-                order.setId(UUID.randomUUID().toString());
-
                 System.out.print("Nome do prato: ");
-                order.setName(scanner.nextLine());
-
-                System.out.print("Descrição: ");
-                order.setDescription(scanner.nextLine());
-
-                System.out.print("Preço (R$): ");
-                order.setPrice(scanner.nextDouble());
-
-                System.out.print("Tempo de preparo (min): ");
-                order.setCookingTime(scanner.nextInt());
-                scanner.nextLine();
+                String prato = scanner.nextLine();
 
                 System.out.print("Categoria [pratos_principais | bebidas | sobremesas]: ");
                 String category = scanner.nextLine();
 
-                order.setChefName(nomeChef);
-                order.generateTimestamp();
-                orderService.sendOrder(order, category);
+                String mensagem = String.format("[%s] %s: %s", java.time.LocalDateTime.now().format(
+                        java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")), nomeChef, prato);
+
+                orderService.sendOrder(mensagem, category);
             }
         } while (option != 0);
-        System.exit(0);
 
+        System.exit(0);
     }
 }
