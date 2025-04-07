@@ -23,9 +23,6 @@ public class RestauranteProdApplication implements CommandLineRunner {
     public void run(String... args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Informe o nome do chef: ");
-        String nomeChef = scanner.nextLine();
-
         int option;
         do {
             System.out.println("\n== MENU CHEF ==");
@@ -34,18 +31,39 @@ public class RestauranteProdApplication implements CommandLineRunner {
             System.out.print("Opção: ");
             option = scanner.nextInt();
             scanner.nextLine();
-
+            
             if (option == 1) {
-                System.out.print("Nome do prato: ");
+                System.out.print("Nome: ");
                 String prato = scanner.nextLine();
 
-                System.out.print("Categoria [pratos_principais | bebidas | sobremesas]: ");
-                String category = scanner.nextLine();
+                System.out.print("Escolha uma categoria: ");
+                System.out.print("1 - Pratos principais | 2 - Bebidas | Sobremesas]: ");
+                String opcao = scanner.nextLine();
+                String rota;
+                String categoria;
+
+                switch(opcao){
+                    case "1":
+                        rota = "pratos_principais";
+                        categoria = "Pratos Principais";
+                        break;
+                    case "2":
+                        rota = "bebidas";
+                        categoria = "Bebidas";
+                        break;
+                    case "3":
+                        rota = "sobremesas";
+                        categoria = "Bebidas";
+                        break;
+                    default:
+                        System.out.println("Categoria inválida.");
+                        continue;
+                }
 
                 String mensagem = String.format("[%s] %s: %s", java.time.LocalDateTime.now().format(
-                        java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")), nomeChef, prato);
+                        java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm")), categoria, prato);
 
-                orderService.sendOrder(mensagem, category);
+                orderService.sendOrder(mensagem, rota);
             }
         } while (option != 0);
 
