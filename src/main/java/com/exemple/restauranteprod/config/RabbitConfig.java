@@ -22,7 +22,6 @@ public class RabbitConfig {
         return new TopicExchange(exchangeName);
     }
 
-    // Definição das Filas
     @Bean
     public Queue pratosPrincipaisQueue() {
         return new Queue("pratos_principais");
@@ -38,7 +37,6 @@ public class RabbitConfig {
         return new Queue("sobremesas");
     }
 
-    // Ligação das Filas com a Exchange via Routing Key
     @Bean
     public Binding pratosPrincipaisBinding(Queue pratosPrincipaisQueue, TopicExchange exchange) {
         return BindingBuilder.bind(pratosPrincipaisQueue).to(exchange).with("pedidos.pratos_principais");
