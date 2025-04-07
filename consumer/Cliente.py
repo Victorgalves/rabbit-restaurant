@@ -30,7 +30,6 @@ def menu():
     print("Exemplo: 1,3 (para pratos principais e sobremesas)")
 
     entrada = input("Escolha: ").split(",")
-    entrada = [e.strip() for e in entrada]
 
     categorias_disponiveis = {
         "1": "pratos_principais",
@@ -38,8 +37,11 @@ def menu():
         "3": "sobremesas"
     }
 
-    categorias_escolhidas = [categorias_disponiveis[e] for e in entrada if e in categorias_disponiveis]
-
+    categorias_escolhidas = []
+    for i in entrada:
+        if i in categorias_disponiveis:
+            categorias_escolhidas.append(categorias_disponiveis[i])
+            
     if categorias_escolhidas:
         consumir_filas_fixas(categorias_escolhidas)
     else:
