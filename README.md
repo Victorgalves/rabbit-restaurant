@@ -13,26 +13,6 @@ Sistema de mensageria para restaurante usando RabbitMQ.
 
 ---
 
-### 🚀 Como rodar
-
-1. Abra um terminal na raiz do projeto e execute:
-   ```bash
-   mvn spring-boot:run
-   ```
-
-2. Abra outro terminal, vá até a pasta `consumer`:
-   ```bash
-   cd consumer
-   python Cliente.py
-   ```
-
-3. Abra outro terminal, também na pasta `consumer`, e execute:
-   ```bash
-   python auditoria.py
-   ```
-
----
-
 ### 🔐 Configurando o RabbitMQ
 
 - Crie uma conta gratuita no [CloudAMQP](https://www.cloudamqp.com/)
@@ -58,3 +38,28 @@ Atualize a URL nos seguintes locais:
   params = pika.URLParameters("amqps://user:senha@host/vhost")
   ```
   E substitua com a URL da sua instância.
+
+---
+
+  ### 🚀 Como rodar
+
+1. Abra um terminal na raiz do projeto e execute:
+   ```bash
+   mvn spring-boot:run
+   ```
+   ou
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+
+3. Abra outro terminal, vá até a pasta `consumer`:
+   ```bash
+   cd consumer
+   python Cliente.py
+   ```
+
+4. Abra outro terminal, também na pasta `consumer`, e execute:
+   ```bash
+   python auditoria.py
+   ```
+
