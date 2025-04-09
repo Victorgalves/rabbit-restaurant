@@ -53,7 +53,7 @@ public class RestauranteProdApplication implements CommandLineRunner {
                         break;
                     case "3":
                         rota = "sobremesas";
-                        categoria = "Bebidas";
+                        categoria = "Sobremesas";
                         break;
                     default:
                         System.out.println("Categoria inválida.");
